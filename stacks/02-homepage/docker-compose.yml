@@ -1,0 +1,50 @@
+# ============================================================================
+# Homepage — panel de entrada a tu home lab
+# ============================================================================
+# QUÉ HACE:
+#   Una página de inicio bonita y rápida con accesos directos a todos tus
+#   servicios (Jellyfin, Pi-hole, Nextcloud...), widgets de estado y
+#   búsqueda. La "puerta principal" de tu laboratorio casero.
+#
+# REQUISITOS:
+#   - Raspberry Pi 4/5 (o cualquier equipo) con Docker y Docker Compose
+#   - Imagen con soporte ARM64: sí
+#   - Puerto 3000 libre en el equipo
+#
+# ARCHIVOS DE CONFIGURACIÓN:
+#   ./config/settings.yaml  -> aspecto general (título, idioma, tema)
+#   ./config/services.yaml  -> los grupos y accesos directos que verás
+#   Edítalos a tu gusto; Homepage recarga los cambios solo.
+#
+# CÓMO SE USA (ver README.md de esta carpeta):
+#   sudo docker compose up -d
+#   Abrir http://IP-DE-TU-PI:3000
+#
+# NOTA SOBRE docker.sock:
+#   Se monta en modo solo lectura para el widget de Docker (ver contenedores
+#   en el panel). Si no lo quieres, borra esas dos líneas del volumen.
+# ============================================================================
+
+services:
+  homepage:
+    container_name: homepage
+    # Versión fijada a propósito: nada de 'latest' traicionero.
+    # Comprobada para ARM64 (Raspberry Pi).
+    image: ghcr.io/gethomepage/homepage:v2.1.0
+    restart: unless-stopped
+    ports:
+      # Interfaz web. Cámbialo si el 3000 está ocupado en tu equipo.
+      - "3000:3000"
+    volumes:
+      # Tus ficheros de configuración (settings.yaml, services.yaml...).
+      # Edítalos en el equipo y Homepage los recarga sin reiniciar.
+      - ./config:/app/config
+      # Solo lectura: permite al widget de Docker mostrar tus contenedores.
+      # Quítalo si no quieres dar ese acceso.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      # Ajusta a tu zona horaria.
+      - TZ=America/New_York
+      # Usuario/grupo del equipo (1000 suele ser el usuario 'pi').
+      - PUID=1000
+      - PGID=1000

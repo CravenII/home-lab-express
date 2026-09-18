@@ -1,0 +1,51 @@
+:root{
+  --bg:#f6f8fb; --ink:#1c2733; --muted:#5b6b7c;
+  --brand:#0f1b2d; --accent:#e8830c; --accent-dark:#c96f06;
+  --card:#ffffff; --line:#e3e9f0; --amber-bg:#fff7e8; --amber-line:#f0c36d;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.container{max-width:960px;margin:0 auto;padding:0 1.2rem}
+header.site{background:var(--brand);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;max-width:960px;margin:0 auto}
+.logo{color:#fff;font-weight:800;font-size:1.25rem;text-decoration:none}
+.logo span{color:var(--accent)}
+header.site nav a{color:#cdd8e4;text-decoration:none;margin-left:1.2rem;font-size:.95rem}
+header.site nav a:hover{color:#fff}
+.hero{background:linear-gradient(135deg,#0f1b2d,#1d3a5f);color:#fff;padding:3.5rem 0}
+.hero h1{margin:0 0 .5rem;font-size:2.2rem;line-height:1.2}
+.hero p{color:#cdd8e4;font-size:1.1rem;max-width:640px;margin:.4rem 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2rem 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem;text-decoration:none;color:inherit;display:block}
+a.card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.card h3{margin:.4rem 0 .4rem;font-size:1.1rem}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card p{color:var(--muted);font-size:.95rem;margin:0}
+.pilar-ico{font-size:1.8rem}
+section.block{margin:2.5rem 0}
+h2.section-title{font-size:1.5rem;border-left:4px solid var(--accent);padding-left:.7rem}
+article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem;margin:2rem 0}
+article h1{font-size:1.9rem;line-height:1.25;margin:.6rem 0}
+article h2{font-size:1.35rem;margin-top:2rem;border-bottom:2px solid var(--line);padding-bottom:.3rem}
+article h3{font-size:1.1rem;margin-top:1.5rem}
+.meta{color:var(--muted);font-size:.9rem}
+.disclosure{background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:8px;padding:.9rem 1.1rem;font-size:.92rem;margin-bottom:1.4rem}
+table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.95rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:.6rem .8rem;text-align:left;white-space:normal}
+th{background:#eef2f7}
+.nota-precios{color:var(--muted);font-size:.9rem;border-top:1px dashed var(--line);padding-top:1rem;margin-top:2rem}
+.relacionados{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.6rem;margin:0 0 2rem}
+.relacionados h2{font-size:1.2rem;margin-top:0}
+.relacionados ul{margin:.5rem 0}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:.55rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700}
+.btn:hover{background:var(--accent-dark)}
+footer.site{background:var(--brand);color:#93a3b5;padding:2rem 0;margin-top:3rem;font-size:.9rem}
+footer.site a{color:#cdd8e4}
+footer.site .container p{margin:.4rem 0}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  article{padding:1.2rem}
+  .hero h1{font-size:1.7rem}
+  header.site nav a{margin-left:.8rem;font-size:.88rem}
+  .nav{flex-wrap:wrap;gap:.5rem}
+}

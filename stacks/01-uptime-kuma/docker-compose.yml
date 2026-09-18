@@ -1,0 +1,38 @@
+# ============================================================================
+# Uptime Kuma — monitorización de servicios (self-hosted)
+# ============================================================================
+# QUÉ HACE:
+#   Vigila tus servicios (webs, contenedores, puertos) y te avisa por
+#   Telegram, email u otros canales cuando algo se cae o vuelve.
+#   Es la herramienta que responde a "¿sigue en pie mi home lab?".
+#
+# REQUISITOS:
+#   - Raspberry Pi 4/5 (o cualquier equipo) con Docker y Docker Compose
+#   - Imagen con soporte ARM64: sí (funciona en la Pi sin trucos)
+#   - Puerto 3001 libre en el equipo
+#
+# CÓMO SE USA (ver README.md de esta carpeta):
+#   sudo docker compose up -d
+#   Abrir http://IP-DE-TU-PI:3001 y crear la cuenta de administrador.
+# ============================================================================
+
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    # Versión fijada a propósito: nada de 'latest' traicionero.
+    # Comprobada para ARM64 (Raspberry Pi).
+    image: louislam/uptime-kuma:2.5.3
+    restart: unless-stopped
+    ports:
+      # Interfaz web. Cámbialo si el 3001 está ocupado en tu equipo.
+      - "3001:3001"
+    volumes:
+      # Aquí vive la base de datos SQLite de Kuma (monitores, historial,
+      # usuarios). Sin este volumen, al recrear el contenedor lo pierdes todo.
+      - uptime-kuma-data:/app/data
+    environment:
+      # Ajusta a tu zona horaria para que las alertas lleven la hora correcta.
+      - TZ=America/New_York
+
+volumes:
+  uptime-kuma-data:

@@ -1,0 +1,82 @@
+# ============================================================================
+# Pi-hole + Unbound — bloquea anuncios en TODA tu red, con DNS privado
+# ============================================================================
+# QUÉ HACE:
+#   Pi-hole actúa como servidor DNS de tu red y filtra la publicidad,
+#   rastreadores y dominios maliciosos antes de que lleguen a tus
+#   dispositivos: funciona en el móvil, la TV y el portátil sin instalar
+#   nada en cada uno.
+#   Unbound resuelve las consultas DNS de forma recursiva y privada
+#   (nadie —ni tu proveedor ni un DNS público— ve todas tus consultas).
+#
+# REQUISITOS:
+#   - Raspberry Pi 4/5 (o cualquier equipo) con Docker y Docker Compose
+#   - Imágenes con soporte ARM64: sí (las dos)
+#   - Puerto 53 TCP/UDP libre en el equipo (DNS)
+#   - Puerto 8080 libre (panel web de Pi-hole)
+#   - IMPORTANTE: necesitas poder cambiar el DNS en tu router o en tus
+#     dispositivos. Sin ese paso, Pi-hole no filtra nada.
+#
+# CONTRASEÑA DEL PANEL:
+#   Se define con la variable de entorno FTL_WEBPASSWORD antes de levantar
+#   el stack. Ejemplo:
+#     export FTL_WEBPASSWORD='tu-clave-segura-aqui'
+#   Si la olvidas, el compose te avisará con un error claro.
+#
+# CÓMO SE USA (ver README.md de esta carpeta):
+#   export FTL_WEBPASSWORD='tu-clave-segura-aqui'
+#   sudo -E docker compose up -d
+#   Panel: http://IP-DE-TU-PI:8080/admin
+# ============================================================================
+
+services:
+  pihole:
+    container_name: pihole
+    hostname: pihole
+    # Versión fijada a propósito: nada de 'latest' traicionero.
+    # Comprobada para ARM64 (Raspberry Pi).
+    image: pihole/pihole:2026.07.2
+    restart: unless-stopped
+    ports:
+      # DNS: tiene que ser el 53, es el puerto estándar del protocolo.
+      - "53:53/tcp"
+      - "53:53/udp"
+      # Panel web en el 8080 del equipo para no chocar con otros servicios
+      # que usen el puerto 80.
+      - "8080:80/tcp"
+    environment:
+      # Ajusta a tu zona horaria.
+      TZ: America/New_York
+      # Pi-hole escucha en todas las interfaces (necesario en Docker).
+      FTLCONF_dns_listeningMode: "ALL"
+      # Todas las consultas van a Unbound (el otro servicio de este
+      # compose), que las resuelve de forma recursiva y privada.
+      FTLCONF_dns_upstreams: "unbound#53"
+      # Valida las respuestas DNS (DNSSEC): más seguridad, cero coste.
+      FTLCONF_dns_dnssec: "true"
+      # Contraseña del panel web. OBLIGATORIA: el :? detiene el arranque
+      # con un mensaje claro si olvidas definirla.
+      FTLCONF_webserver_api_password: "${FTL_WEBPASSWORD:?Define FTL_WEBPASSWORD con tu contrasena antes de levantar el stack. Ejemplo - export FTL_WEBPASSWORD='tu-clave-segura-aqui'}"
+    volumes:
+      # Configuración y base de datos de Pi-hole (listas, consultas...).
+      # Sin estos volúmenes, al recrear el contenedor lo pierdes todo.
+      - ./pihole/etc-pihole:/etc/pihole
+      - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      # Permite a Pi-hole gestionar sockets de red con privilegios
+      # (recomendado por la documentación oficial en Docker).
+      - NET_ADMIN
+    depends_on:
+      - unbound
+
+  unbound:
+    container_name: unbound
+    # Resolutor recursivo con DNSSEC. Versión fijada a propósito.
+    # Comprobado para ARM64 (Raspberry Pi).
+    image: l33tlamer/unbound-recursive:1.25.1
+    restart: unless-stopped
+    # A PROPÓSITO sin puertos publicados: solo Pi-hole lo necesita,
+    # y se hablan por la red interna del compose. Menos superficie expuesta.
+    # Unbound tarda unos segundos en estar listo; Pi-hole reintenta solo.
+    # No necesita volúmenes: un resolutor recursivo no guarda estado
+    # importante entre reinicios (la caché se reconstruye sola).

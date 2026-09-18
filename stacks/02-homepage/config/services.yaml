@@ -1,0 +1,32 @@
+# Grupos y accesos directos del panel.
+# Cambia 192.168.1.10 por la IP local de tu Raspberry Pi.
+# Homepage recarga este fichero solo; no hace falta reiniciar.
+#
+# Para añadir un servicio nuevo, copia uno de los bloques de abajo.
+# La lista completa de iconos está en https://gethomepage.dev/configs/services
+
+- Monitorización:
+    - Uptime Kuma:
+        href: http://192.168.1.10:3001
+        description: Vigila que tus servicios estén en línea
+        icon: uptime-kuma
+
+- Red:
+    - Pi-hole:
+        href: http://192.168.1.10:8080/admin
+        description: Bloqueador de anuncios de toda la casa
+        icon: pi-hole
+
+- Media:
+    # Ejemplo: descoméntalo cuando tengas Jellyfin corriendo.
+    # - Jellyfin:
+    #     href: http://192.168.1.10:8096
+    #     description: Tu Netflix privado
+    #     icon: jellyfin
+
+- Nube personal:
+    # Ejemplo: descoméntalo cuando tengas Nextcloud corriendo.
+    # - Nextcloud:
+    #     href: http://192.168.1.10:8081
+    #     description: Tus archivos, calendario y contactos
+    #     icon: nextcloud

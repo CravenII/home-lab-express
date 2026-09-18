@@ -1,0 +1,14 @@
+# Aspecto general del panel. Homepage recarga los cambios solo.
+title: Mi Home Lab
+# Idioma de la interfaz
+language: es
+# Tema: dark | light
+theme: dark
+# Estilo de la cabecera: clean | boxed
+headerStyle: clean
+# Cómo se muestra el estado: dot | shimmer | badge
+statusStyle: dot
+# Color de acento: slate | zinc | gray | neutral | stone | amber | ...
+color: slate
+# Número de tarjetas por fila en pantallas grandes
+cardBlur: sm
