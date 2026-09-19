@@ -1,6 +1,6 @@
 # Informe nocturno — preparación (17-sep-2026)
 
-Trabajo nocturno autorizado por Craven ("dale, todo lo que puedas"). **$0 gastados, nada publicado, ninguna cuenta abierta, nadie contactado.**
+Trabajo nocturno autorizado ("dale, todo lo que puedas"). **$0 gastados, nada publicado, ninguna cuenta abierta, nadie contactado.**
 
 ## Estado general
 
@@ -32,7 +32,7 @@ Trabajo nocturno autorizado por Craven ("dale, todo lo que puedas"). **$0 gastad
 | episodio-11-final.mp4 | 42.0 s | h264 1080×1920 @30fps | AAC | sin errores | ✅ OK |
 | episodio-12-final.mp4 | 42.0 s | h264 1080×1920 @30fps | AAC | sin errores | ✅ OK |
 
-**Conclusión:** el error del episodio 13 fue un caso aislado — ningún otro MP4 del catálogo presenta corrupción. Los 9 archivos del calendario de subidas de YouTube (18–26 sep) son seguros para subir. Siguen vigentes las reglas: el episodio 13 NO se republica sin autorización de Craven, y los episodios 08/09/10 no tienen MP4 final y no se publican.
+**Conclusión:** el error del episodio 13 fue un caso aislado — ningún otro MP4 del catálogo presenta corrupción. Los 9 archivos del calendario de subidas de YouTube (18–26 sep) son seguros para subir. Siguen vigentes las reglas: el episodio 13 NO se republica sin autorización, y los episodios 08/09/10 no tienen MP4 final y no se publican.
 
 ---
 
@@ -67,7 +67,7 @@ Descartados por estar ya registrados: mihomelab.com, cacharreo.com, tecnohogar.c
 
 **#2 (alternativa) — misnube.com**: el más corto (7 caracteres), suena a marca. Matiz: "nube" orienta la percepción a almacenamiento, aunque como marca serviría para todo.
 
-**Caveats:** los dominios libres pueden registrarse por terceros en cualquier momento — si Craven elige, no demorar mucho. El precio exacto por dominio individual debe confirmarse en pantalla antes de pagar (son nombres inventados, no premium de diccionario, así que el precio estándar aplica casi con seguridad). **NADA comprado.**
+**Caveats:** los dominios libres pueden registrarse por terceros en cualquier momento — no demorar mucho una vez elegido. El precio exacto por dominio individual debe confirmarse en pantalla antes de pagar (son nombres inventados, no premium de diccionario, así que el precio estándar aplica casi con seguridad). **NADA comprado.**
 
 ---
 
@@ -106,7 +106,7 @@ Body: qué resuelve cada stack, decisiones técnicas (sin `version:`, sin tags `
 
 **D. r/homelab (inglés)** — UN solo post, tono de colega ("reinstalé mi Pi tres veces hasta estandarizar esto"), decisiones técnicas concretas, enlace al final + transparencia. Flair `Projects`.
 
-**E. Telegram/Discord (español, corto)** — "Soy Craven, de Suffern (NY). Llevo años con una Raspberry Pi 5 como servidor de casa y he publicado gratis 3 stacks Docker Compose que uso a diario... Son gratis para siempre; estoy validando si hay interés en un pack mayor de pago antes de escribirlo. Si alguien los prueba y le da guerra la instalación, respondo dudas por aquí."
+**E. Telegram/Discord (español, corto)** — "Soy aficionado al self-hosting. Llevo años con una Raspberry Pi 5 como servidor de casa y he publicado gratis 3 stacks Docker Compose que uso a diario... Son gratis para siempre; estoy validando si hay interés en un pack mayor de pago antes de escribirlo. Si alguien los prueba y le da guerra la instalación, respondo dudas por aquí."
 
 **F. Mastodon (hilo corto)** — 3 stacks gratis que uso a diario en mi home lab, uno por post del hilo, cierre con repo + transparencia. Hashtags #selfhosting #raspberrypi #docker.
 
@@ -130,9 +130,9 @@ Todos los enlaces con UTM (`?utm_source=reddit_selfhosted&utm_medium=post&utm_ca
 
 ---
 
-## Pendientes que requieren a Craven (nada hecho sin él)
+## Pendientes que requieren decisión (nada hecho sin él)
 
-1. **Dominio:** elegir entre los candidatos (recomendado: labencasa.com) — la compra la hace él con el precio exacto en pantalla.
+1. **Dominio:** elegir entre los candidatos (recomendado: labencasa.com) — la compra se hace con el precio exacto en pantalla.
 2. **Repo GitHub:** crear el repo público con los stacks (semana 0 del plan de difusión) — requiere su cuenta.
 3. **Prueba de humo:** los 3 stacks están verificados en sintaxis pero no probados en hardware real — conviene probarlos en su Pi 5 antes de publicar.
 4. **YouTube:** el calendario de subidas sigue su curso (episodio 01 el 18-sep a las 7:00 PM EDT).
